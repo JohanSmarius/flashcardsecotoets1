@@ -1,0 +1,110 @@
+.card-area {
+  max-width: 640px;
+}
+
+.flashcard {
+  perspective: 1200px;
+  height: 320px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.flashcard:focus-visible .flashcard-inner {
+  box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .5);
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .5s;
+  transform-style: preserve-3d;
+  border-radius: 1rem;
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25rem 1.25rem 2rem;
+  text-align: center;
+  border-radius: 1rem;
+  border: 1px solid var(--bs-border-color);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow-y: auto;
+  box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .12);
+}
+
+.flashcard-front {
+  background: var(--bs-body-bg);
+}
+
+.flashcard-back {
+  background: var(--bs-primary-bg-subtle);
+  transform: rotateY(180deg);
+}
+
+.face-label {
+  position: absolute;
+  top: .75rem;
+  left: 0;
+  right: 0;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+}
+
+.face-text {
+  font-size: 1.15rem;
+  line-height: 1.45;
+  margin: auto 0;
+}
+
+.face-text.is-term {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.flip-hint {
+  position: absolute;
+  bottom: .6rem;
+  left: 0;
+  right: 0;
+  font-size: .75rem;
+  color: var(--bs-secondary-color);
+}
+
+.stats-bar {
+  height: .6rem;
+}
+
+.stats-legend-item::before {
+  content: "";
+  display: inline-block;
+  width: .65rem;
+  height: .65rem;
+  margin-right: .3rem;
+  border-radius: 50%;
+  background: var(--dot, #adb5bd);
+}
+
+@media (min-width: 768px) {
+  .flashcard { height: 360px; }
+  .face-text { font-size: 1.3rem; }
+  .face-text.is-term { font-size: 2.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-inner { transition: none; }
+}

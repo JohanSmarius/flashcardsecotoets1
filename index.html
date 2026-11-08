@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards Economie – Begrippen</title>
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container py-3 py-md-4">
+    <header class="text-center mb-3">
+      <h1 class="h3 mb-1">Flashcards Economie</h1>
+      <p class="text-body-secondary mb-0">Oefen de begrippen uit hoofdstuk 1 t/m 4</p>
+    </header>
+
+    <section class="row g-2 justify-content-center mb-3" aria-label="Instellingen">
+      <div class="col-12 col-md-6 col-lg-4">
+        <label for="deckSelect" class="form-label small mb-1">Onderdeel</label>
+        <select id="deckSelect" class="form-select"></select>
+      </div>
+      <div class="col-6 col-md-3 col-lg-3">
+        <label for="modeSelect" class="form-label small mb-1">Modus</label>
+        <select id="modeSelect" class="form-select">
+          <option value="adaptive">Slim oefenen</option>
+          <option value="browse">Bladeren</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3 col-lg-3">
+        <label for="directionSelect" class="form-label small mb-1">Voorkant</label>
+        <select id="directionSelect" class="form-select">
+          <option value="begrip">Begrip</option>
+          <option value="antwoord">Omschrijving</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-3 col-lg-2 d-flex align-items-end" id="shuffleWrap">
+        <button id="shuffleBtn" type="button" class="btn btn-outline-primary w-100">Door elkaar</button>
+      </div>
+    </section>
+
+    <section class="mx-auto card-area" aria-label="Voortgang" id="statsSection">
+      <div class="progress mb-1 stats-bar" role="img" aria-label="Verdeling van de kaarten over leerniveaus" id="statsBar"></div>
+      <div class="d-flex flex-wrap justify-content-between small text-body-secondary" id="statsLegend"></div>
+    </section>
+
+    <section class="mx-auto card-area mt-3" id="cardWrap" aria-label="Flashcard">
+      <div class="d-flex justify-content-between small text-body-secondary mb-1">
+        <span id="paragraphLabel"></span>
+        <span id="counter"></span>
+      </div>
+      <div class="progress mb-3" role="progressbar" aria-label="Voortgang van deze ronde" aria-valuemin="0" aria-valuemax="100">
+        <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+      </div>
+
+      <div id="flashcard" class="flashcard" role="button" tabindex="0"
+           aria-label="Kaart omdraaien" aria-pressed="false">
+        <div class="flashcard-inner">
+          <div class="flashcard-face flashcard-front">
+            <span class="face-label" id="frontLabel"></span>
+            <div class="face-text" id="frontText"></div>
+            <span class="flip-hint">Tik om om te draaien</span>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <span class="face-label" id="backLabel"></span>
+            <div class="face-text" id="backText"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bladeren -->
+      <div id="browseControls" class="d-flex gap-2 mt-3">
+        <button id="prevBtn" type="button" class="btn btn-secondary flex-fill btn-lg">Vorige</button>
+        <button id="flipBtn" type="button" class="btn btn-primary flex-fill btn-lg">Draai om</button>
+        <button id="nextBtn" type="button" class="btn btn-secondary flex-fill btn-lg">Volgende</button>
+      </div>
+
+      <!-- Slim oefenen -->
+      <div id="adaptiveControls" class="mt-3 d-none">
+        <button id="flipBtn2" type="button" class="btn btn-primary btn-lg w-100">Toon antwoord</button>
+        <div id="ratingButtons" class="d-flex gap-2 d-none">
+          <button id="againBtn" type="button" class="btn btn-danger btn-lg flex-fill">Nog niet</button>
+          <button id="knownBtn" type="button" class="btn btn-success btn-lg flex-fill">Weet ik</button>
+        </div>
+      </div>
+
+      <p class="text-center small text-body-secondary mt-2 d-none d-md-block mb-0" id="keyHint"></p>
+    </section>
+
+    <!-- Ronde klaar -->
+    <section class="mx-auto card-area mt-3 d-none" id="donePanel" aria-live="polite">
+      <div class="alert alert-success text-center mb-3">
+        <h2 class="h5 mb-2">Ronde klaar!</h2>
+        <p class="mb-0" id="doneText"></p>
+      </div>
+      <div class="d-grid gap-2">
+        <button id="practiceAllBtn" type="button" class="btn btn-primary btn-lg">Toch alles nog eens oefenen</button>
+      </div>
+    </section>
+
+    <div class="mx-auto card-area mt-4 text-center">
+      <button id="resetBtn" type="button" class="btn btn-link btn-sm text-danger">Voortgang wissen</button>
+      <p id="storageWarning" class="small text-warning-emphasis d-none mb-0">
+        Let op: de browser staat opslaan niet toe. Je voortgang gaat verloren zodra je de pagina sluit.
+      </p>
+    </div>
+
+    <div id="errorBox" class="alert alert-danger mt-3 d-none" role="alert"></div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
